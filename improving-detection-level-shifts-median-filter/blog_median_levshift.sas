@@ -142,11 +142,11 @@ proc tsmodel
    /* level shift detection */
    rc=diagspec.setARIMAXOutlier('ALLOWAO',0        /*Allow additive outliers (0|1)*/
                                 ,'ALLOWLS',1       /*Allow level shifts (0|1)*/
-                                ,'ALLOWTLS',0      /*Allow temporaray level shifts (0|1)*/
+                                ,'ALLOWTLS',0      /*Allow temporary level shifts (0|1)*/
                                 ,'DETECT','YES'    /*Include level shifts that improve the AIC*/
-                                ,'SIGLEVEL',.01    /* value between 0 and 1 that specifies 
-                                                      the significance level for outlier detection*/
-                               );
+                                ,'SIGLEVEL',.01);    /* value between 0 and 1 that specifies 
+                                                        the significance level for outlier detection*/
+                               
 
 
    rc = diagspec.Close();
