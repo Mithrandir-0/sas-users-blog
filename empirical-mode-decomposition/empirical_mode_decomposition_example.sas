@@ -43,7 +43,8 @@ proc sgplot data=wti_oil_prices;
    scatter x=DATE y=DCOILWTICO / group=group transparency=.6;
 run;
 
-
+/*Add rows for missing dates. Populate the dates for added rows and set any other variables 
+  on the added rows to missing */
 proc timeseries data = wti_oil_prices out = wti_oil_price_fill;
    id date interval   = day
            accumulate = none
@@ -52,6 +53,7 @@ proc timeseries data = wti_oil_prices out = wti_oil_price_fill;
    var DCOILWTICO;
 run;
 
+/* Fill in missing values in the DCOILWTICO variable using linear interpolation.*/
 proc expand data=wti_oil_price_fill out=wti_oil_price_fill_int;
    convert DCOILWTICO=DCOILWTICO_INT / method=join;
    id DATE;
